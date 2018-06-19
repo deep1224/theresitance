@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<title>Bootstrap Example</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="./resource/app.js"></script>
+<script src="https://code.angularjs.org/1.6.9/angular-cookies.js"></script>
+
+<body ng-app="puzzle" ng-controller="homeCntrl">
+
+    <div>
+        <div class="jumbotron">
+            <div class="container text-center">
+                <h2>
+                    <a href="./index.html">{{pnm}}</a>
+                </h2>
+                <button type="button" ng-click="createbtn()" data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-lg">Create Team</button>
+                <a type="button" ng-if="pnm != 'Puzzle'" class="btn btn-success btn-lg" href="./playground.html">Let's Play</a>
+            </div>
+        </div>
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-list-alt">
+                        <strong> List of Teams </strong>
+                </div>
+                <div class="panel-body" style="height: 300px; overflow-y: scroll;">
+                    <div class="alert alert-danger" ng-show="msgflag">
+                        <strong>Oops!</strong> {{getTeamMessage}}
+                    </div>
+
+                    <table class="table">
+                        <input type="text" ng-show="!msgflag" ng-model="teamquery" class="form-control" placeholder="Search team">
+                        <tbody>
+                            <tr ng-repeat="team in getTeamMessage | filter : teamquery">
+                                <td class="col-sm-1">
+                                    <button type="button" ng-click="joinbtn($index)" data-toggle="modal" data-target="#myModal" class="btn btn-warning btn-xs">
+                                        Join
+                                    </button>
+                                </td>
+                                <td class="col-sm-4">
+                                    <strong style="margin-left: 10px">{{team.teamname}}</strong>
+                                </td>
+                                <td class="col-sm-3">
+                                    <span class="badge">
+                                        Required Players: {{team.rquiredcount}}
+                                    </span>
+                                </td>
+                                <td class="col-sm-3">
+                                    <span class="badge">
+                                        Total Players: {{team.playercount}}
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <strong class="modal-title">{{popmessage}} </strong>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group" ng-show="playerflag">
+                                <label class="control-label col-sm-3" for="gname">Team Name:</label>
+                                <label class="control-label col-sm-9" for="gname">{{tname}}</label>
+
+                            </div>
+                            <div class="input-group" ng-show="playerflag">
+                                <input type="text" ng-model="playername" class="form-control" placeholder="Enter player name">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-success" ng-click="addPlayer()" type="submit">
+                                        Join
+                                    </button>
+                                </div>
+                            </div>
+                            <form class="form-horizontal">
+                                <div class="form-group" ng-show="teamflag">
+                                    <label class="control-label col-sm-4" for="gname">Team Name:</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" ng-model="teamname" ng-change="checkTeam()" reuiqred class="form-control" id="gname" placeholder="Enter team name">
+                                    </div>
+
+                                </div>
+                                <div class="form-group" ng-show="teamflag">
+                                    <label class="control-label col-sm-4" for="nummember">Number of players:</label>
+                                    <div class="col-sm-8">
+                                        <input type="number" ng-model="teamcount" required class="form-control" id="nummember" placeholder="Enter number of players"
+                                            value=5>
+                                    </div>
+                                </div>
+                                <div class="form-group text-center" ng-show="teamflag">
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-success" ng-click="addTeam()">Create</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="text-center">
+                                <span class="label label-danger text-center" ng-show="tflag">
+                                    Team name already exists.
+                                </span>
+                                <span class="label label-success text-center" ng-show="resultflag">
+                                    {{addresult}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

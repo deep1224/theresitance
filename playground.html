@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<title>Bootstrap Example</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="./resource/app.js"></script>
+
+<body ng-app="puzzle" ng-controller="homeCntrl">
+
+    <div>
+
+        <div class="jumbotron">
+            <div class="container text-center">
+                <label for="editname">
+                    <h1>
+                        Player Name
+                    </h1>
+                </label>
+                <a id="editname" href="#">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+                <p>Your Role is
+                    <button type="button" ng-click="startCounter()" class="btn btn-warning btn-sm">
+                        Show
+                    </button>
+                    <strong ng-show="roleFlag">{{prole}} + {{counter}}</strong> 
+                </p>
+            </div>
+        </div>
+        <div class="alert alert-danger text-center">
+            <strong>Your not in team</strong>
+        </div>
+        <div class="container-fluid">
+            <div class="panel panel-default col-md-3">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-th">
+                        <strong>Playing Team</strong>
+                </div>
+                <div class="panel-body">
+                    <div class="alert alert-danger">
+                        <strong>Not yet selected anyone</strong>
+                    </div>
+
+                    <ul class="list-group text-center">
+                        <li class="list-group-item">
+                            <strong style="margin-left: 10px">Group 1</strong>
+                        </li>
+                        <li class="list-group-item">
+                            <strong style="margin-left: 10px">Group 1</strong>
+                        </li>
+                        <li class="list-group-item">
+                            <strong style="margin-left: 10px">Group 1</strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel panel-default col-md-6">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-tower">
+                        <strong>Play Ground</strong>
+                </div>
+                <div class="panel-body">
+                    <div class="alert alert-success">
+                        <strong>Project Description</strong>
+                    </div>
+
+                    <ul class="list-group text-center">
+                        <li class="list-group-item">
+                            <div class="btn-group btn-group-lg">
+                                <button type="button" class="btn btn-success">
+                                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                                    Promote
+                                </button>
+                                <button type="button" class="btn btn-danger">
+                                    <span class="glyphicon glyphicon-thumbs-down"></span>
+                                    Block
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="alert alert-warning">
+                        <strong>Vote Added</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default col-md-3">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-king">
+                        <strong>Results</strong>
+                </div>
+                <div class="panel-body">
+                    <div class="alert alert-danger">
+                        <strong>Not yet started</strong>
+                    </div>
+
+                    <ul class="list-group text-center">
+                        <li class="list-group-item list-group-item-success">
+                            <strong style="margin-left: 10px">Promoter</strong>
+                        </li>
+                        <li class="list-group-item list-group-item-warning">
+                            <strong style="margin-left: 10px">Draw</strong>
+                        </li>
+                        <li class="list-group-item list-group-item-danger">
+                            <strong style="margin-left: 10px">Trailers</strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+</body>
+
+</html>
